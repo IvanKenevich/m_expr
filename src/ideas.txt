@@ -1,0 +1,53 @@
+Some examples of the models that will get built:
+(5+2)/(5-3)
+becomes
+<div>(
+    <add>(
+        <val>(5),
+        <val>(2)
+    ),
+    <sub>(
+        <val>(5),
+        <val>(3)
+    )
+)
+
+(1+2)-(3+4)
+becomes
+<sub>(
+    <add>(
+        <val>(1),
+        <val>(2)
+    ),
+    <add>(
+        <val>(3),
+        <val>(4)
+    )
+)
+
+symbols:
+    "start" - beginning of the string (abstract, not an actual character)
+    "end" - ending of the string (abstract, could be '\0' in C/C++)
+    "number" - a digit
+    "operator" - any arithmetic operator
+    "(" - begin group
+    ")" - end group
+
+Math grammar:
+    "start" is followed by "number" or "("
+    "end" is followed by nothing
+    "number" is followed by "number" or "operator" or ")" or "end"
+    "(" is followed by "number" or "("
+    ")" is followed by "operator" or ")" or "end"
+
+Every possible expression type should have a "Builder"
+
+if "(" is encountered, start building a generic expression
+if ")" is encountered, end building a generic expression
+if "operator" is encountered, make current expression an "operator" expression
+if "number" is encountered, build a <val> expression
+    "number" must be followed by an operator or ")" or "end"
+
+(5+2)/(5-3)
+"(" begin e1<generic>, any subsequent expressions will be added to it
+"5" create
