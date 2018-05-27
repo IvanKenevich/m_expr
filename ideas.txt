@@ -33,12 +33,36 @@ symbols:
     "(" - begin group
     ")" - end group
 
+<num> = {<digit> | <digit><num>}, <digit> = {0 | ... | 9}
+<2expr> = {<num> | <operator> | <num>}, <operator> = {+ | - | * | /}
+<Nexpr> = {<num1> | <operator1> | <num2> | <operator2> | ... | <operatorN> | <numN>}
+
 Math grammar:
     "start" is followed by "number" or "("
     "end" is followed by nothing
     "number" is followed by "number" or "operator" or ")" or "end"
     "(" is followed by "number" or "("
     ")" is followed by "operator" or ")" or "end"
+    every "(" must be eventually followed by ")"
+
+((5+2)-(3+2))
+
+What if you first run a group parser that splits into generic expressions that get assigned a `level of depth`?
+"start" - begin group 0
+"(" - begin group 10
+"(" - begin group 20
+"skip everything that isn't a group"
+")" - end group 20
+"skip everything that isn't a group"
+"(" - begin group 21
+"skip everything that isn't a group"
+")" - end group 21
+")" - end group 10
+"end" - end group 0
+
+you encounter "0(", you start building e0<generic>, any expression that follows will be the first
+operand of e0
+you encounter "1(", you start building e1<generic>
 
 Every possible expression type should have a "Builder"
 
@@ -47,7 +71,3 @@ if ")" is encountered, end building a generic expression
 if "operator" is encountered, make current expression an "operator" expression
 if "number" is encountered, build a <val> expression
     "number" must be followed by an operator or ")" or "end"
-
-(5+2)/(5-3)
-"(" begin e1<generic>, any subsequent expressions will be added to it
-"5" create
