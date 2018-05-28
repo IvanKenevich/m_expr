@@ -1,5 +1,8 @@
-#include <iostream>
+#include "ExprTree.h"
+using namespace std;
 
 int main() {
-    return 1;
+    cout << "Anyone there?" << endl;
+    cin.get();
+    return 0;
 }
