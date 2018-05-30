@@ -1,0 +1,12 @@
+                More on Numbers
+
+Numbers are created by recursively checking characters in a string left to right until the character isn't a digit.
+This will generate the starting and ending indices for a sequence of digits which gets converted into a decimal number
+This decimal number then gets wrapped into a VALUE Node and added to the working tree.
+
+Grammar model for a Number:
+<num> = {<digit> | <digit><num>}
+<digit> = {0 | ... | 9}
+
+In words:
+A number is a digit or a digit followed by a number, where digit is 0 or 1 or ... or 9.

@@ -1,0 +1,18 @@
+                More on Groupings
+
+Groupings are themselves split into two types based on what they do:
+    1. Beginning of a group
+    2. Ending of a group
+
+Beginning of a group groupings are "BEGINNING OF A STRING" and "("
+Ending of a group groupings are "ENDING OF A STRING" and ")"
+
+From the requirement that beginning and ending of the input string are recognized as groupings follows the existence
+of the so-called 0th tree.
+0th tree (T0) is the "root tree" of the expression. It can be the only tree if the expression is simple but in
+a more general case it contains ALL other trees (that is, it itself is not contained within a tree).
+T0 is the tree that gets finished last and it is the tree where recursive evaluation starts when the expression
+has been fully built into a tree.
+
+The groupings are used to manipulate the stack of Trees and stack of pointers to Tree root pointers 
+which are discussed in more detail in their respective sections.

@@ -1,0 +1,15 @@
+                Basic Overview
+
+The idea behind the expression evaluator is to build a hierarchical model of the expression from a string of
+symbols. The model chosen is a Binary Tree. 
+
+Expressions first get parsed sequentially into three types of entities:
+    1. Numbers
+    2. Operators
+    3. Groupings
+
+These entities are sequentially added to one of the (possibly) many trees in existence.
+The trees are managed by a common stack that helps create structure and hierarchy.
+
+Once the string has ended (and the trees have been built), the model can be recursively evaluated with a simple
+traversal of the Tree.

@@ -1,0 +1,15 @@
+                More on Operators
+
+Operators are recognized by checking if a character is one of the allowed operators.
+This operator gets wrapped into the appropriate type of Node and added to the working tree.
+
+Order of operations in arithmetic requires some caution when adding new operators. For example,
+the expression 10 + 2 * 5 will get built from left to right and thus + will be recognized before *.
+Therefore a program has to keep track of the previous operator that has been added.
+This amounts to knowing the parent of the current working node and comparing its order with the order of the
+operator to be inserted:
+    If a new operator has a lower (or equal) precedence than the most recent parent, make it a parent of that
+    parent. If it has a higher precedence, make it a child of that parent.
+
+The reason that only the operator of the immediate parent of the current working node has to be known 
+is based on the fact that the underlying Tree structure is Binary.

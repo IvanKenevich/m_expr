@@ -1,0 +1,20 @@
+                More on Stacks
+
+Stack of Trees:
+In order to deal with groupings, a stack of trees is introduced.
+Whenever a beginning of a group is encountered, a new tree is created and the reference to it is pushed onto a stack.
+Any symbols always get added to the tree on the top of the stack.
+Whenever an ending of a group is encountered, a tree reference is popped off of the stack.
+Before any parsing, the stack is empty, as soon as the beginning of the string is encountered, the 0th tree
+gets created and a reference to it gets pushed onto the stack.
+
+Stack of pointers to Tree roots:
+struct eh {
+    Node ** to_be_updated;
+    Node ** to_update_from;
+}
+To be copied from the wall.
+
+
+
+Just realized... can (must) the two be combined into one?
