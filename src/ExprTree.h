@@ -11,6 +11,8 @@ struct ExprNode {
     ExprNode(ExprType type, int value);
     ExprNode(int value);
     ~ExprNode();
+
+	bool isHigher(const Node * currentParent) const;
 };
 
 class ExprTree {
@@ -31,5 +33,6 @@ private:
     int adopt(ExprNode * &child, ExprNode * parent);
 
     ExprNode * root;
-    ExprNode *current;
+    ExprNode * current;
+	ExprNode * currentParent;
 };

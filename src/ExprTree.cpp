@@ -20,15 +20,29 @@ ExprNode::ExprNode(int v) {
     *value = v;
 }
 
+ExprNode::isHigher(const Node * currentParent) const {
+		if (type == ExprType::VAL) return false; // if this is a value node, it is lower
+		else if ((type == ExprType::ADD || type == ExprType::SUB) &&
+		(currentParent->type == ExprType::MUL || currentParent->type == ExprType::DIV)) 
+			return false;
+}
+
+// ============ END NODE BEGIN TREE ===========================
+
 ExprTree::ExprTree() {
-    current = root = NULL;
+    currentParent = current = root = NULL;
 }
 
 int ExprTree::add(ExprNode * node) {
     if (!root) {
-        current = root = node;
+        current_parent = current = root = node;
     }
     else {
+		if (node.isHigher(currentParent)) {
 
+		}
+		else {
+
+		}
     }
 }
