@@ -39,7 +39,7 @@ Operators are recognized by checking if a character is one of the allowed operat
 This operator gets wrapped into the appropriate type of Node and added to the working tree.
 
 Order of operations in arithmetic requires some caution when adding new operators. For example,
-the expression 10 + 2 * 5 will get built from left to right and thus + will be recognized before *.
+the expression 10 + 2 * 5 will get built from left to right and thus + will be recognized before. 
 Therefore a program has to keep track of the previous operator that has been added.
 
 This amounts to knowing the parent of the current working node and comparing its order with the order of the
