@@ -1,13 +1,9 @@
 #include "ExprTree.h"
 
-ExprNode::ExprNode(ExprType t, int v) {
+ExprNode::ExprNode(ExprType t) {
     left = right = NULL;
     type = t;
-    if (type == ExprType::VAL) {
-        value = new int;
-        *value = v;
-    }
-    else value = NULL;
+    value = NULL;
 }
 
 /**
@@ -20,14 +16,15 @@ ExprNode::ExprNode(int v) {
     *value = v;
 }
 
-ExprNode::isHigher(const Node * currentParent) const {
-		if (type == ExprType::VAL) return false; // if this is a value node, it is lower
+bool ExprNode::isHigher(const ExprNode * currentParent) const {
+		if (type == ExprType::VAL) return false; // anything is higher than a value node
 		else if ((type == ExprType::ADD || type == ExprType::SUB) &&
-		(currentParent->type == ExprType::MUL || currentParent->type == ExprType::DIV)) 
+		(currentParent->type == ExprType::MUL || currentParent->type == ExprType::DIV))
 			return false;
+		else return true;
 }
 
-// ============ END NODE BEGIN TREE ===========================
+// ============ END NODE. BEGIN TREE ===========================
 
 ExprTree::ExprTree() {
     currentParent = current = root = NULL;
@@ -35,10 +32,10 @@ ExprTree::ExprTree() {
 
 int ExprTree::add(ExprNode * node) {
     if (!root) {
-        current_parent = current = root = node;
+        currentParent = current = root = node;
     }
     else {
-		if (node.isHigher(currentParent)) {
+		if (node->isHigher(currentParent)) {
 
 		}
 		else {

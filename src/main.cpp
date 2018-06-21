@@ -1,13 +1,19 @@
-#include "ExprTree.h"
+//#include "ExprTree.h"
+#include <iostream>
+#include "parser.h"
 using namespace std;
 
 int main() {
-    cout << "Anyone there?" << endl;
-    cin.get();
+    char str[30] = "(123+2)";
+    ExprNode* n = NULL;
+    cout << recognize(str,0,9,n) << endl;
+    cout << "Adress: " << n << endl;
+    cout << "Type: " << n->type << endl;
+    cout << "Value: " << (n->value) << endl;
     return 0;
 }
 
-ExprTree * f(char * expr_string) {
+/*ExprTree * f(char * expr_string) {
 	ExprTree * result = new ExprTree();
 
 	char * c = expr_string;
@@ -16,7 +22,7 @@ ExprTree * f(char * expr_string) {
 		if (n!=NULL) {   // if it is a number or an operator
 			result->add(n);  // adds whatever has been recognized
 		}
-		else {	// if it is a groupping operator
+		else {	// if it is a grouping operator
 			char * start = c;                   // the group starts here
 			char * end = findGroupEnd(start);   // wherever it ends
 			char * sub_expr = substring(expr_string, start, end);  // substring the original expression using the above limits
@@ -28,4 +34,4 @@ ExprTree * f(char * expr_string) {
 	}
 
 	return result;
-}
+}*/

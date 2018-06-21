@@ -8,11 +8,11 @@ struct ExprNode {
     ExprType type;
     int * value;
 
-    ExprNode(ExprType type, int value);
+    ExprNode(ExprType type);
     ExprNode(int value);
     ~ExprNode();
 
-	bool isHigher(const Node * currentParent) const;
+	bool isHigher(const ExprNode * currentParent) const;
 };
 
 class ExprTree {
